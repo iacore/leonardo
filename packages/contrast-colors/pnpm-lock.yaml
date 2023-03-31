@@ -1,5 +1,9 @@
 lockfileVersion: 5.4
 
+overrides:
+  mout@<1.2.3: '>=1.2.3'
+  mout@<=1.2.3: '>=1.2.4'
+
 specifiers:
   apca-w3: ^0.1.9
   chroma-js: ^2.4.2
@@ -1097,14 +1101,14 @@ packages:
   /ciebase/0.1.1:
     resolution: {integrity: sha512-KEnf/WVT5E+Gn+LsfMHGJFATltSOeW0qm7dpzQYL/Qe5PEpyTM+UI5bMoBo16FE81zMpu+U6032USTP6Cz1XNA==}
     dependencies:
-      mout: 0.11.1
+      mout: 1.2.4
     dev: false
 
   /ciecam02/0.4.6:
     resolution: {integrity: sha512-nh/Kl8s5lgtyEl7lA381JFinLhgUwDhJaAVgbVx2BaiiJIzJLumQvuFXwdS76tSch7jDjWejP+MtKYCCEk/brg==}
     dependencies:
       ciebase: 0.1.1
-      mout: 0.11.1
+      mout: 1.2.4
     dev: false
 
   /cjs-module-lexer/1.2.2:
@@ -2642,8 +2646,8 @@ packages:
     resolution: {integrity: sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==}
     dev: true
 
-  /mout/0.11.1:
-    resolution: {integrity: sha512-pK9VNiLE3QgGBrC/3ICAscwOLU7oTNeK2l32uqNAioBYtB2tQAfSsGDNChUlk7CP23126mc5lUt6+na9FlN8JA==}
+  /mout/1.2.4:
+    resolution: {integrity: sha512-mZb9uOruMWgn/fw28DG4/yE3Kehfk1zKCLhuDU2O3vlKdnBBr4XaOCqVTflJ5aODavGUPqFHZgrFX3NJVuxGhQ==}
     dev: false
 
   /ms/2.1.2:

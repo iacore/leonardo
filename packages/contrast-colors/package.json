@@ -48,5 +48,11 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "pnpm": {
+    "overrides": {
+      "mout@<1.2.3": ">=1.2.3",
+      "mout@<=1.2.3": ">=1.2.4"
+    }
   }
 }
