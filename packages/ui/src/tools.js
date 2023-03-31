@@ -46,7 +46,7 @@ import '@spectrum-css/table/dist/index-vars.css';
 
 import './scss/style.scss';
 import './scss/colorinputs.scss';
-import './scss/components/*.scss';
+// import './scss/components/*.scss';
 
 import '@adobe/focus-ring-polyfill';
 import {pageLoader} from './js/pageLoader'
@@ -74,14 +74,14 @@ import {
   cancelBulkConvert
 } from './js/bulkConvertDialog'
 
-const { readFileSync } = require('fs')
-const posthtml = require('posthtml')
-const options = { /* see available options below */ }
+// const { readFileSync } = require('fs')
+// const posthtml = require('posthtml')
+// const options = { /* see available options below */ }
 
-posthtml()
-  .use(require('posthtml-modules')(options))
-  .process(readFileSync('src/index.html', 'utf8'))
-  .then((result) => result);
+// posthtml()
+//   .use(require('posthtml-modules')(options))
+//   .process(readFileSync('src/index.html', 'utf8'))
+//   .then((result) => result);
 
 
 window.matchMedia('(prefers-color-scheme: dark)')

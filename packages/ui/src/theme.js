@@ -47,7 +47,7 @@ import '@spectrum-css/progresscircle/dist/index-vars.css';
 import './scss/colorinputs.scss';
 import './scss/charts.scss';
 import './scss/style.scss';
-import './scss/components/*.scss';
+// import './scss/components/*.scss';
 
 
 import '@adobe/focus-ring-polyfill';
@@ -57,7 +57,6 @@ loadIcons('./spectrum-css-icons.svg');
 loadIcons('./spectrum-icons.svg');
 
 import ClipboardJS from 'clipboard';
-import TinyURL from 'tinyurl';
 
 // Import local Javascript functions
 import { 
@@ -133,7 +132,6 @@ import {
 } from './js/createSVGuiKit'
 import {toggleSwatchAttributes} from './js/toggleSwatchAttributes';
 import {pageLoader} from './js/pageLoader'
-import { format } from 'path';
 import { create3dModel } from './js/create3dModel';
 import {sortColorScales} from './js/sortColorScales';
 import {
@@ -141,14 +139,14 @@ import {
 } from './js/popover';
 import { forceSimulation } from 'd3';
 
-const { readFileSync } = require('fs')
-const posthtml = require('posthtml')
-const options = { /* see available options below */ }
+// const { readFileSync } = require('fs')
+// const posthtml = require('posthtml')
+// const options = { /* see available options below */ }
 
-posthtml()
-  .use(require('posthtml-modules')(options))
-  .process(readFileSync('src/theme.html', 'utf8'))
-  .then((result) => result);
+// posthtml()
+//   .use(require('posthtml-modules')(options))
+//   .process(readFileSync('src/theme.html', 'utf8'))
+//   .then((result) => result);
 
 window.updateParams = updateParams;
 function updateParams() {

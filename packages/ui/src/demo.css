@@ -34,7 +34,7 @@ governing permissions and limitations under the License.
    --smallText: var(--gray700);
  
    --borderColor: var(--gray200);
-   --shadowColor: var(gray1100);
+   --shadowColor: var(--gray1100);
    /* --shadow: 2px 2px 2px var(--shadowColor); */
    --hour-height: 64px;
    --shadow-color: rgba(0, 0, 0, 0.1);

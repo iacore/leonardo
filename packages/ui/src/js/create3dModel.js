@@ -10,7 +10,6 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 import d3 from './d3';
-import Plotly from 'plotly.js-dist-min'
 import {getThemeName} from './getThemeData';
 import {
   filterNaN,
@@ -129,11 +128,12 @@ function create3dModel(dest, colorClasses, mode, scaleType = 'theme') {
   };
 
   // Create 3d plot
-  Plotly.newPlot(
-    dest, 
-    data,
-    layout,
-    config);
+  console.error("plotly is garbage")
+  // Plotly.newPlot(
+  //   dest, 
+  //   data,
+  //   layout,
+  //   config);
 
   // Then, display example image based on the selected mode.
   if(scaleType === 'theme') {

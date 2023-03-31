@@ -10,6 +10,23 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
+@import './components/articleCard.scss';
+@import './components/colorPicker.scss';
+@import './components/colorSlider.scss';
+@import './components/dialog.scss';
+@import './components/header.scss';
+@import './components/highlightCode.scss';
+@import './components/imageUploader.scss';
+@import './components/outputSwatches.scss';
+@import './components/panelAccordion.scss';
+@import './components/popover.scss';
+@import './components/sections.scss';
+@import './components/selectBox.scss';
+@import './components/statusLabel.scss';
+@import './components/textfield.scss';
+@import './components/toast.scss';
+@import './components/tooltip.scss';
+
 :root {
   --gradient-height-offset: 284px;
   --chartWrapperMaxWidth: calc(1000px - 48px);
