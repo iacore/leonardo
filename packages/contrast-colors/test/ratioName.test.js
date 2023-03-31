@@ -10,7 +10,7 @@ governing permissions and limitations under the License.
 */
 /* global test, expect */
 
-import { ratioName } from "../index";
+import { ratioName } from '../index';
 
 test('should output 10 numbers incremented by 100', () => {
   const theme = ratioName([1, 1.2, 1.4, 2, 3, 4.5, 6, 8, 12, 21]);

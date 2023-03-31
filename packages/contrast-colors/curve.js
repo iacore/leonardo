@@ -123,11 +123,9 @@ const prepareCurve = (p1x, p1y, c1x, c1y, c2x, c2y, p2x, p2y) => {
   return (x) => fs[Math.round(x)] || null;
 };
 
-
 export {
   bezlen,
   findDotsAtSegment,
   prepareCurve,
-  catmullRom2bezier
+  catmullRom2bezier,
 };
-

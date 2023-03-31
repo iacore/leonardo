@@ -10,9 +10,9 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import { APCAcontrast, sRGBtoY } from "apca-w3";
-import chroma from "chroma-js";
-import { catmullRom2bezier, prepareCurve } from "./curve";
+import { APCAcontrast, sRGBtoY } from 'apca-w3';
+import chroma from 'chroma-js';
+import { catmullRom2bezier, prepareCurve } from './curve';
 
 const colorSpaces = {
   CAM02: 'jab',
@@ -25,7 +25,7 @@ const colorSpaces = {
   LCH: 'lch', // named per correct color definition order
   RGB: 'rgb',
   OKLAB: 'oklab',
-  OKLCH: 'oklch'
+  OKLCH: 'oklch',
 };
 
 function round(x, n = 0) {
@@ -169,28 +169,28 @@ function createScale({
   }
 
   let domains;
-  
-  if(fullScale) {
+
+  if (fullScale) {
     // Set domain of each color key based on percentage (as HSLuv lightness)
     // against the full scale of black to white
     domains = colorKeys
       .map((key) => swatches - swatches * (chroma(key).jch()[0] / 100))
       .sort((a, b) => a - b)
       .concat(swatches);
-      
+
     domains.unshift(0);
   } else {
     // Domains need to be a percentage of the available luminosity range
-    let lums = colorKeys.map((c) => chroma(c).jch()[0] / 100)
-    let min = Math.min(...lums);
-    let max = Math.max(...lums);
+    const lums = colorKeys.map((c) => chroma(c).jch()[0] / 100);
+    const min = Math.min(...lums);
+    const max = Math.max(...lums);
 
     domains = lums
-      .map((lum) => { 
-        if(lum === 0 || isNaN((lum - min) / (max - min))) return 0;
-        else return swatches - (lum - min) / (max - min) * swatches;
+      .map((lum) => {
+        if (lum === 0 || Number.isNaN((lum - min) / (max - min))) return 0;
+        return swatches - ((lum - min) / (max - min)) * swatches;
       })
-      .sort((a, b) => a - b)
+      .sort((a, b) => a - b);
   }
 
   // Test logarithmic domain (for non-contrast-based scales)
@@ -200,20 +200,20 @@ function createScale({
   // Transform square root in order to smooth gradient
   domains = sqrtDomains;
   // if(distributeLightness === 'parabolic') {
-  //   const parabola = (x) => {return (Math.sqrt(x, 2))} 
+  //   const parabola = (x) => {return (Math.sqrt(x, 2))}
   //   let percDomains = sqrtDomains.map((d) => {return d/swatches})
   //   let newDomains = percDomains.map((d) => {return parabola(d) * swatches})
   //   domains = newDomains;
   // }
-  if(distributeLightness === 'polynomial') {
-    // Equation based on polynomial mapping of lightness values in CIECAM02 
+  if (distributeLightness === 'polynomial') {
+    // Equation based on polynomial mapping of lightness values in CIECAM02
     // of the RgBu diverging color scale.
     // const polynomial = (x) => { return 2.53906249999454 * Math.pow(x,4) - 6.08506944443434 * Math.pow(x,3) + 5.11197916665992 * Math.pow(x,2) - 2.56537698412552 * x + 0.999702380952327; }
     // const polynomial = (x) => { return Math.sqrt(Math.sqrt(x)) }
-    const polynomial = (x) => { return Math.sqrt(Math.sqrt((Math.pow(x, 2.25) + Math.pow(x, 4))/2)) }
+    const polynomial = (x) => Math.sqrt(Math.sqrt((x ** 2.25 + x ** 4) / 2));
 
-    let percDomains = sqrtDomains.map((d) => {return d/swatches})
-    let newDomains = percDomains.map((d) => {return polynomial(d) * swatches})
+    const percDomains = sqrtDomains.map((d) => d / swatches);
+    const newDomains = percDomains.map((d) => polynomial(d) * swatches);
     domains = newDomains;
   }
 
@@ -236,10 +236,8 @@ function createScale({
       ...sortedColor,
       black,
     ];
-  } else {
-    if(sortColor) ColorsArray = sortedColor;
-    else ColorsArray = colorKeys;
-  }
+  } else if (sortColor) ColorsArray = sortedColor;
+  else ColorsArray = colorKeys;
 
   let smoothScaleArray;
   if (smooth) {
@@ -272,13 +270,12 @@ function createScale({
   }
   if (asFun) {
     return scale;
-  } 
+  }
 
   // const Colors = new Array(swatches).fill().map((_, d) => chroma(scale(d)).hex());
-  const Colors = 
-    (!smooth || smooth === false) ? 
-    scale.colors(swatches) : 
-    smoothScaleArray;
+  const Colors = (!smooth || smooth === false)
+    ? scale.colors(swatches)
+    : smoothScaleArray;
 
   const colors = Colors.filter((el) => el != null);
 
@@ -384,19 +381,19 @@ function luminance(r, g, b) {
   return (a[0] * 0.2126) + (a[1] * 0.7152) + (a[2] * 0.0722);
 }
 
-function getContrast(color, base, baseV, method='wcag2') {
+function getContrast(color, base, baseV, method = 'wcag2') {
   if (baseV === undefined) { // If base is an array and baseV undefined
     const baseLightness = chroma.rgb(...base).hsluv()[2];
     baseV = round(baseLightness / 100, 2);
   }
 
-  if(method === 'wcag2') {
+  if (method === 'wcag2') {
     const colorLum = luminance(color[0], color[1], color[2]);
     const baseLum = luminance(base[0], base[1], base[2]);
-  
+
     const cr1 = (colorLum + 0.05) / (baseLum + 0.05); // will return value >=1 if color is darker than background
     const cr2 = (baseLum + 0.05) / (colorLum + 0.05); // will return value >=1 if color is lighter than background
-  
+
     if (baseV < 0.5) { // Dark themes
       // If color is darker than background, return cr1 which will be whole number
       if (cr1 >= 1) {
@@ -415,11 +412,10 @@ function getContrast(color, base, baseV, method='wcag2') {
       return cr1;
     }
     return -cr1;
-  } else if (method === 'wcag3') {
-    return (baseV < 0.5) ? APCAcontrast( sRGBtoY( color ), sRGBtoY( base ) ) * -1 : APCAcontrast( sRGBtoY( color ), sRGBtoY( base ) );
-  } else {
-    throw new Error(`Contrast calculation method ${method} unsupported; use 'wcag2' or 'wcag3'`);
+  } if (method === 'wcag3') {
+    return (baseV < 0.5) ? APCAcontrast(sRGBtoY(color), sRGBtoY(base)) * -1 : APCAcontrast(sRGBtoY(color), sRGBtoY(base));
   }
+  throw new Error(`Contrast calculation method ${method} unsupported; use 'wcag2' or 'wcag3'`);
 }
 
 function minPositive(r, formula) {

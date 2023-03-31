@@ -9,7 +9,7 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 /* global test, expect */
-import { Theme, Color, BackgroundColor } from "../index";
+import { Theme, Color, BackgroundColor } from '../index';
 
 test('should generate theme for three colors', () => {
   const gray = new BackgroundColor({ name: 'gray', colorKeys: ['#cacaca', '#323232'], colorspace: 'HSL', ratios: [1, 1.2, 1.4, 2, 3, 4.5, 6, 8, 12, 21] });
@@ -58,7 +58,6 @@ test('should generate theme for three colors', () => {
   ]);
 });
 
-
 test('should output theme as key-value pairs', () => {
   const gray = new BackgroundColor({ name: 'gray', colorKeys: ['#cacaca', '#323232'], colorspace: 'HSL', ratios: [1, 1.2, 1.4, 2, 3, 4.5, 6, 8, 12, 21] });
   const blue = new Color({ name: 'blue', colorKeys: ['#0000ff'], colorspace: 'LAB', ratios: [2, 3, 4.5, 8, 12] });
@@ -68,14 +67,14 @@ test('should output theme as key-value pairs', () => {
 
   expect(themeColors).toEqual({
     background: '#e1e1e1',
-    gray100:'#e1e1e1',
+    gray100: '#e1e1e1',
     gray200: '#cecece',
     gray300: '#bfbfbf',
-    gray400:'#a0a0a0',
-    gray500:'#808080',
+    gray400: '#a0a0a0',
+    gray500: '#808080',
     gray600: '#646464',
-    gray700:'#515151',
-    gray800:'#3f3f3f',
+    gray700: '#515151',
+    gray800: '#3f3f3f',
     gray900: '#232323',
     gray1000: '#000000',
     blue100: '#b28aff',
@@ -86,7 +85,7 @@ test('should output theme as key-value pairs', () => {
     red100: '#ff7474',
     red200: '#ff1111',
     red300: '#cc0000',
-    red400:'#850000',
+    red400: '#850000',
     red500: '#4f0000',
   });
 });
@@ -241,7 +240,7 @@ test('should increase contrast of existing theme', () => {
   const gray = new BackgroundColor({ name: 'gray', colorKeys: ['#cacaca', '#323232'], colorspace: 'HSL', ratios: [-1.8, -1.2, 1, 1.2, 1.4, 2, 3, 4.5, 6, 8, 12, 21] });
   const blue = new Color({ name: 'blue', colorKeys: ['#0000ff'], colorspace: 'LAB', ratios: [2, 3, 4.5, 8, 12] });
   const red = new Color({ name: 'red', colorKeys: ['#ff0000'], colorspace: 'RGB', ratios: [2, 3, 4.5, 8, 12] });
-  const theme = new Theme({ colors: [gray, blue, red], backgroundColor: gray, lightness: 90});
+  const theme = new Theme({ colors: [gray, blue, red], backgroundColor: gray, lightness: 90 });
   theme.contrast = 1.4;
   const themeColors = theme.contrastColors;
 
@@ -385,7 +384,6 @@ test('should generate white theme with increased contrast', () => {
   ]);
 });
 
-
 test('should generate dark theme with increased contrast', () => {
   const gray = new BackgroundColor({ name: 'gray', colorKeys: ['#cacaca'], colorspace: 'HSL', ratios: [-1.8, -1.2, 1, 1.2, 1.4, 2, 3, 4.5, 6, 8, 12, 21] });
   const blue = new Color({ name: 'blue', colorKeys: ['#0000ff'], colorspace: 'LAB', ratios: [2, 3, 4.5, 8, 12] });
@@ -503,7 +501,6 @@ test('should generate colors with user-defined names', () => {
   ]);
 });
 
-
 test('should generate colors with user-defined names as key-value pairs', () => {
   const grayRatios = {
     GRAY_1: -1.8,
@@ -536,26 +533,26 @@ test('should generate colors with user-defined names as key-value pairs', () => 
   const themeColors = theme.contrastColorPairs;
 
   expect(themeColors).toEqual(
-    { 
-      background: '#303030', 
-      'GRAY_1': '#000000' ,
-      'GRAY_2': '#222222' ,
-      'GRAY_3': '#303030' ,
-      'GRAY_4': '#3c3c3c' ,
-      'GRAY_5': '#464646' ,
-      'GRAY_6': '#5d5d5d' ,
-      'GRAY_7': '#787878' ,
-      'GRAY_8': '#969696' ,
-      'GRAY_9': '#ffffff' ,
-      'BLUE_LARGE_TEXT': '#8457ff' ,
-      'BLUE_TEXT': '#a97fff' ,
-      'BLUE_HIGH_CONTRAST': '#d8beff' ,
-      'BLUE_HIGHEST_CONTRAST': '#f7f2ff' ,
-      'red--largeText': '#f20000' ,
-      'red--text': '#ff6262' ,
-      'red--highContrast': '#ffb7b7' ,
-      'red--highestContrast': '#fff1f1' 
-    }
+    {
+      background: '#303030',
+      GRAY_1: '#000000',
+      GRAY_2: '#222222',
+      GRAY_3: '#303030',
+      GRAY_4: '#3c3c3c',
+      GRAY_5: '#464646',
+      GRAY_6: '#5d5d5d',
+      GRAY_7: '#787878',
+      GRAY_8: '#969696',
+      GRAY_9: '#ffffff',
+      BLUE_LARGE_TEXT: '#8457ff',
+      BLUE_TEXT: '#a97fff',
+      BLUE_HIGH_CONTRAST: '#d8beff',
+      BLUE_HIGHEST_CONTRAST: '#f7f2ff',
+      'red--largeText': '#f20000',
+      'red--text': '#ff6262',
+      'red--highContrast': '#ffb7b7',
+      'red--highestContrast': '#fff1f1',
+    },
   );
 });
 
@@ -905,25 +902,24 @@ test('should generate slightly lighter & darker oranges on a lighter midtone sla
   expect(themeColors).toEqual(['#b84601', '#d86202']);
 });
 
-
 // Output formats
 test('should generate 2 colors in HEX format', () => {
   const color = new Color({ name: 'Color', colorKeys: ['#2451FF', '#C9FEFE', '#012676'], ratios: [3, 4.5], colorspace: 'CAM02' });
-  const theme = new Theme({ colors: [color], backgroundColor: '#f5f5f5', output: 'HEX'  });
+  const theme = new Theme({ colors: [color], backgroundColor: '#f5f5f5', output: 'HEX' });
   const themeColors = theme.contrastColorValues;
 
   expect(themeColors).toEqual(['#548fe0', '#2b66f0']);
 });
 test('should generate 2 colors in RGB format', () => {
   const color = new Color({ name: 'Color', colorKeys: ['#2451FF', '#C9FEFE', '#012676'], ratios: [3, 4.5], colorspace: 'CAM02' });
-  const theme = new Theme({ colors: [color], backgroundColor: '#f5f5f5', output: 'RGB'  });
+  const theme = new Theme({ colors: [color], backgroundColor: '#f5f5f5', output: 'RGB' });
   const themeColors = theme.contrastColorValues;
 
   expect(themeColors).toEqual(['rgb(84, 143, 224)', 'rgb(43, 102, 240)']);
 });
 test('should generate 2 colors in HSL format', () => {
   const color = new Color({ name: 'Color', colorKeys: ['#2451FF', '#C9FEFE', '#012676'], ratios: [3, 4.5], colorspace: 'CAM02' });
-  const theme = new Theme({ colors: [color], backgroundColor: '#f5f5f5', output: 'HSL'  });
+  const theme = new Theme({ colors: [color], backgroundColor: '#f5f5f5', output: 'HSL' });
   const themeColors = theme.contrastColorValues;
 
   expect(themeColors).toEqual(['hsl(215deg, 69%, 60%)', 'hsl(222deg, 87%, 55%)']);
@@ -958,7 +954,7 @@ test('should add a color to existing theme', () => {
   const red = new Color({ name: 'red', colorKeys: ['#ff0000'], colorspace: 'RGB', ratios: [2, 3, 4.5, 8, 12] });
   const theme = new Theme({ colors: [gray, blue, red], backgroundColor: gray, lightness: 90 });
 
-  const yellow = new Color({ name: 'yellow', colorKeys: ['#ffff00'], colorspace: 'HSL', ratios: [2, 3, 4.5, 8, 12]});
+  const yellow = new Color({ name: 'yellow', colorKeys: ['#ffff00'], colorspace: 'HSL', ratios: [2, 3, 4.5, 8, 12] });
   theme.addColor = yellow;
 
   const themeColors = theme.contrastColors;
@@ -1009,7 +1005,7 @@ test('should add a color to existing theme', () => {
         { name: 'yellow400', contrast: 8, value: '#414100' },
         { name: 'yellow500', contrast: 12, value: '#242400' },
       ],
-    }
+    },
   ]);
 });
 
@@ -1017,7 +1013,7 @@ test('should remove a color from existing theme', () => {
   const gray = new BackgroundColor({ name: 'gray', colorKeys: ['#cacaca', '#323232'], colorspace: 'HSL', ratios: [1, 1.2, 1.4, 2, 3, 4.5, 6, 8, 12, 21] });
   const blue = new Color({ name: 'blue', colorKeys: ['#0000ff'], colorspace: 'LAB', ratios: [2, 3, 4.5, 8, 12] });
   const red = new Color({ name: 'red', colorKeys: ['#ff0000'], colorspace: 'RGB', ratios: [2, 3, 4.5, 8, 12] });
-  const yellow = new Color({ name: 'yellow', colorKeys: ['#ffff00'], colorspace: 'HSL', ratios: [2, 3, 4.5, 8, 12]});
+  const yellow = new Color({ name: 'yellow', colorKeys: ['#ffff00'], colorspace: 'HSL', ratios: [2, 3, 4.5, 8, 12] });
   const theme = new Theme({ colors: [gray, blue, red, yellow], backgroundColor: gray, lightness: 90 });
   theme.removeColor = yellow;
 
@@ -1059,15 +1055,15 @@ test('should remove a color from existing theme', () => {
         { name: 'red400', contrast: 8, value: '#850000' },
         { name: 'red500', contrast: 12, value: '#4f0000' },
       ],
-    }
+    },
   ]);
 });
 
-/** 
+/**
  * APCA contrast test
  */
 
- test('should use APCA to generate theme for three colors', () => {
+test('should use APCA to generate theme for three colors', () => {
   const gray = new BackgroundColor({ name: 'gray', colorKeys: ['#cacaca', '#323232'], colorspace: 'HSL', ratios: [8, 60, 75, 90, 106] });
   const blue = new Color({ name: 'blue', colorKeys: ['#0000ff'], colorspace: 'LAB', ratios: [40, 60, 75, 90] });
   const red = new Color({ name: 'red', colorKeys: ['#ff0000'], colorspace: 'RGB', ratios: [40, 60, 75, 90] });
@@ -1083,7 +1079,7 @@ test('should remove a color from existing theme', () => {
         { name: 'gray200', contrast: 60, value: '#8e8e8e' },
         { name: 'gray300', contrast: 75, value: '#6e6e6e' },
         { name: 'gray400', contrast: 90, value: '#4b4b4b' },
-        { name: 'gray500', contrast: 106, value: '#050505' }
+        { name: 'gray500', contrast: 106, value: '#050505' },
       ],
     },
     {
@@ -1092,7 +1088,7 @@ test('should remove a color from existing theme', () => {
         { name: 'blue100', contrast: 40, value: '#c6a4ff' },
         { name: 'blue200', contrast: 60, value: '#9f73ff' },
         { name: 'blue300', contrast: 75, value: '#7145ff' },
-        { name: 'blue400', contrast: 90, value: '#1a08dd' }
+        { name: 'blue400', contrast: 90, value: '#1a08dd' },
       ],
     },
     {
@@ -1101,16 +1097,15 @@ test('should remove a color from existing theme', () => {
         { name: 'red100', contrast: 40, value: '#ff9797' },
         { name: 'red200', contrast: 60, value: '#ff4444' },
         { name: 'red300', contrast: 75, value: '#d20000' },
-        { name: 'red400', contrast: 90, value: '#8f0000' }
+        { name: 'red400', contrast: 90, value: '#8f0000' },
       ],
     },
   ]);
 });
 
-
 /**
  * Expected errors
-*/ 
+*/
 test('should generate no colors, missing colorKeys', () => {
   expect(
     () => {

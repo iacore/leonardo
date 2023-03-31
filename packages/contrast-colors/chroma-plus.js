@@ -10,10 +10,10 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import chromajs from "chroma-js";
-import hsluv from "hsluv";
-import ciebase from "ciebase";
-import ciecam02 from "ciecam02";
+import chromajs from 'chroma-js';
+import hsluv from 'hsluv';
+import ciebase from 'ciebase';
+import ciecam02 from 'ciecam02';
 
 const cam = ciecam02.cam({
   whitePoint: ciebase.illuminant.D65,
@@ -233,4 +233,4 @@ const extendChroma = (chroma) => {
   chroma.getCSSGradient = getCSSGradient;
 };
 
-export {extendChroma}
+export { extendChroma };

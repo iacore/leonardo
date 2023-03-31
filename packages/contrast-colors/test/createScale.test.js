@@ -10,7 +10,7 @@ governing permissions and limitations under the License.
 */
 /* global test, expect */
 
-import { createScale } from "../index";
+import { createScale } from '../index';
 
 test('should generate 8 colors in Lab', () => {
   const scale = createScale({ swatches: 8, colorKeys: ['#CCFFA9', '#FEFEC5', '#5F0198'], colorspace: 'LAB', shift: 1, fullScale: true });
@@ -24,7 +24,7 @@ test('should generate 8 colors in Lab', () => {
       '#8e62a1',
       '#73329c',
       '#470d6e',
-      '#000000'
+      '#000000',
     ],
   );
 });
@@ -41,7 +41,7 @@ test('should generate 8 colors in OKlab', () => {
       '#8169a7',
       '#6c399f',
       '#3d0064',
-      '#000000'
+      '#000000',
     ],
   );
 });
@@ -58,7 +58,7 @@ test('should generate 8 colors in OKLCh', () => {
       '#0079d9',
       '#503cbd',
       '#440077',
-      '#000000'
+      '#000000',
     ],
   );
 });

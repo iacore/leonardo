@@ -10,8 +10,8 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import chroma from "chroma-js";
-import { colorSpaces, createScale } from "./utils";
+import chroma from 'chroma-js';
+import { colorSpaces, createScale } from './utils';
 
 class Color {
   constructor({ name, colorKeys, colorspace = 'RGB', ratios, smooth = false, output = 'HEX', saturation = 100 }) {
@@ -23,7 +23,7 @@ class Color {
     this._smooth = smooth;
     this._output = output;
     this._saturation = saturation;
-    
+
     if (!this._name) {
       throw new Error('Color missing name');
     }
@@ -92,9 +92,9 @@ class Color {
   }
 
   set smooth(smooth) {
-    if(smooth === true || smooth === 'true') this._smooth = smooth;
+    if (smooth === true || smooth === 'true') this._smooth = smooth;
     else this._smooth = false;
-    
+
     this._generateColorScale();
   }
 
@@ -119,13 +119,13 @@ class Color {
   }
 
   _updateColorSaturation() {
-    let newColorKeys = [];
-    this._colorKeys.forEach(key => {
-      let currentOklch = chroma(`${key}`).oklch();
-      let currentSaturation = currentOklch[1];
-      let newSaturation = currentSaturation * (this._saturation / 100);
-      let newOklch = chroma.oklch(currentOklch[0], newSaturation, currentOklch[2]);
-      let newColor = chroma.rgb(newOklch).hex();
+    const newColorKeys = [];
+    this._colorKeys.forEach((key) => {
+      const currentOklch = chroma(`${key}`).oklch();
+      const currentSaturation = currentOklch[1];
+      const newSaturation = currentSaturation * (this._saturation / 100);
+      const newOklch = chroma.oklch(currentOklch[0], newSaturation, currentOklch[2]);
+      const newColor = chroma.rgb(newOklch).hex();
       newColorKeys.push(newColor);
     });
     // set color keys with new modified array

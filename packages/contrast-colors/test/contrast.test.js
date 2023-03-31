@@ -10,7 +10,7 @@ governing permissions and limitations under the License.
 */
 /* global test, expect */
 
-import { contrast } from "../index";
+import { contrast } from '../index';
 
 test('should provide negative contrast in light theme (-1.55...)', () => {
   const contrastValue = contrast([255, 255, 255], [207, 207, 207]); // white is UI color, gray is base. Should return negative whole number
@@ -42,8 +42,7 @@ test('should provide contrast when passing base value (5.64...)', () => {
   expect(contrastValue).toBe(5.635834988986869);
 });
 
-
-/** 
+/**
  * Test APCA colors
  */
 
@@ -60,31 +59,31 @@ test('should provide APCA contrast of ~ 78.3', () => {
 });
 
 test('should provide APCA contrast of ~ 38.7', () => {
-  const contrastValue = contrast([255, 162, 0], [255,255,255], undefined, 'wcag3'); // lighter gray is UI color, gray is base. Should return negative whole number
+  const contrastValue = contrast([255, 162, 0], [255, 255, 255], undefined, 'wcag3'); // lighter gray is UI color, gray is base. Should return negative whole number
 
   expect(contrastValue).toBe(38.67214116963013);
 });
 
 test('should provide APCA contrast of ~ -43.1 since bg lum is greater than 50%', () => {
-  const contrastValue = contrast([255,255,255], [255, 162, 0], undefined, 'wcag3'); // lighter gray is UI color, gray is base. Should return negative whole number
+  const contrastValue = contrast([255, 255, 255], [255, 162, 0], undefined, 'wcag3'); // lighter gray is UI color, gray is base. Should return negative whole number
 
   expect(contrastValue).toBe(-43.12544505836451);
 });
 
 test('should provide APCA contrast of ~ 107.9', () => {
-  const contrastValue = contrast([255,255,255], [0, 0, 0], undefined, 'wcag3'); // lighter gray is UI color, gray is base. Should return negative whole number
+  const contrastValue = contrast([255, 255, 255], [0, 0, 0], undefined, 'wcag3'); // lighter gray is UI color, gray is base. Should return negative whole number
 
   expect(contrastValue).toBe(107.88473318309848);
 });
 
 test('should provide APCA contrast of ~ 106', () => {
-  const contrastValue = contrast([0, 0, 0], [255,255,255], undefined, 'wcag3'); // lighter gray is UI color, gray is base. Should return negative whole number
+  const contrastValue = contrast([0, 0, 0], [255, 255, 255], undefined, 'wcag3'); // lighter gray is UI color, gray is base. Should return negative whole number
 
   expect(contrastValue).toBe(106.04067321268862);
 });
 
 test('should provide APCA contrast less than APCA officially supports', () => {
-  const contrastValue = contrast([238, 238, 238], [255,255,255], undefined, 'wcag3'); // Leonardo needs more than just 7.5+ for contrast values
+  const contrastValue = contrast([238, 238, 238], [255, 255, 255], undefined, 'wcag3'); // Leonardo needs more than just 7.5+ for contrast values
 
   expect(contrastValue).toBe(7.567424744881627);
 });

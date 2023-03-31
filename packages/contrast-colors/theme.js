@@ -10,11 +10,11 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import chroma from "chroma-js";
+import chroma from 'chroma-js';
 
-import { colorSpaces, convertColorValue, multiplyRatios, ratioName, round, searchColors } from "./utils";
+import { colorSpaces, convertColorValue, multiplyRatios, ratioName, round, searchColors } from './utils';
 
-import { BackgroundColor } from "./backgroundcolor";
+import { BackgroundColor } from './backgroundcolor';
 
 class Theme {
   constructor({ colors, backgroundColor, lightness, contrast = 1, saturation = 100, output = 'HEX', formula = 'wcag2' }) {
@@ -42,7 +42,7 @@ class Theme {
     }
 
     // Only run the update if saturation is set below 100%
-    if(this._saturation < 100) this._updateColorSaturation(this._saturation);
+    if (this._saturation < 100) this._updateColorSaturation(this._saturation);
 
     this._findContrastColors();
     this._findContrastColorPairs();
@@ -88,6 +88,10 @@ class Theme {
     return this._saturation;
   }
 
+  get backgroundColor() {
+    return this._backgroundColor;
+  }
+
   set backgroundColor(backgroundColor) {
     this._setBackgroundColor(backgroundColor);
     this._findContrastColors();
@@ -95,10 +99,6 @@ class Theme {
 
   get backgroundColorValue() {
     return this._backgroundColorValue;
-  }
-
-  get backgroundColor() {
-    return this._backgroundColor;
   }
 
   // Add a getter and setter for colors
@@ -116,28 +116,30 @@ class Theme {
     this._colors.push(color);
     this._findContrastColors();
   }
+
   // remove individual colors
   set removeColor(color) {
-    const filteredColors = this._colors.filter(entry => {return entry.name !== color.name});
+    const filteredColors = this._colors.filter((entry) => entry.name !== color.name);
     this._colors = filteredColors;
     this._findContrastColors();
   }
+
   // modify individual colors
   set updateColor(param) {
     // pass arguments in the format updateColor: {color: 'ColorToChange', [propertyToChange]: 'newValue'}
     // eg, changing the name of a color: updateColor: {color: 'blue', name: 'cerulean'}
     // If param is an array, loop through each object, otherwise execute once
-    if(Array.isArray(param)) {
-      for(let i = 0; i < param.length; i ++) {
-        let currentColor = this._colors.filter(entry => {return entry.name === param[i].color});
+    if (Array.isArray(param)) {
+      for (let i = 0; i < param.length; i++) {
+        let currentColor = this._colors.filter((entry) => entry.name === param[i].color);
         currentColor = currentColor[0];
-        let index = this._colors.indexOf(currentColor);
-        const filteredColors = this._colors.filter(entry => {return entry.name !== param[i].color});
-        if(param[i].name) currentColor.name = param[i].name;
-        if(param[i].colorKeys) currentColor.colorKeys = param[i].colorKeys;
-        if(param[i].ratios) currentColor.ratios = param[i].ratios;
-        if(param[i].colorspace) currentColor.colorspace = param[i].colorspace;
-        if(param[i].smooth) currentColor.smooth = param[i].smooth;
+        const index = this._colors.indexOf(currentColor);
+        const filteredColors = this._colors.filter((entry) => entry.name !== param[i].color);
+        if (param[i].name) currentColor.name = param[i].name;
+        if (param[i].colorKeys) currentColor.colorKeys = param[i].colorKeys;
+        if (param[i].ratios) currentColor.ratios = param[i].ratios;
+        if (param[i].colorspace) currentColor.colorspace = param[i].colorspace;
+        if (param[i].smooth) currentColor.smooth = param[i].smooth;
         // call _generateColorScale to ensure scale is updated with new params
         currentColor._generateColorScale();
 
@@ -146,18 +148,18 @@ class Theme {
         this._colors = filteredColors;
       }
     } else {
-      let currentColor = this._colors.filter(entry => {return entry.name === param.color});
+      let currentColor = this._colors.filter((entry) => entry.name === param.color);
       currentColor = currentColor[0];
-      let index = this._colors.indexOf(currentColor);
-      const filteredColors = this._colors.filter(entry => {return entry.name !== param.color});
-      if(param.name) currentColor.name = param.name;
-      if(param.colorKeys) currentColor.colorKeys = param.colorKeys;
-      if(param.ratios) currentColor.ratios = param.ratios;
-      if(param.colorspace) currentColor.colorspace = param.colorspace;
-      if(param.smooth) currentColor.smooth = param.smooth;
+      const index = this._colors.indexOf(currentColor);
+      const filteredColors = this._colors.filter((entry) => entry.name !== param.color);
+      if (param.name) currentColor.name = param.name;
+      if (param.colorKeys) currentColor.colorKeys = param.colorKeys;
+      if (param.ratios) currentColor.ratios = param.ratios;
+      if (param.colorspace) currentColor.colorspace = param.colorspace;
+      if (param.smooth) currentColor.smooth = param.smooth;
       // call _generateColorScale to ensure scale is updated with new params
       currentColor._generateColorScale();
-  
+
       // Add the updated color into the filtered array at original index
       filteredColors.splice(index, 0, currentColor);
       this._colors = filteredColors;
@@ -215,9 +217,9 @@ class Theme {
   }
 
   _updateColorSaturation(saturation) {
-    this._colors.map((color) => {
+    this._colors.forEach((color) => {
       color.saturation = saturation;
-    })
+    });
   }
 
   _findContrastColors() {
@@ -228,7 +230,7 @@ class Theme {
 
     const returnColors = []; // Array to be populated with JSON objects for each color, including names & contrast values
     const returnColorValues = []; // Array to be populated with flat list of all color values
-    const returnColorPairs = {...baseObj}; // Objext to be populated with flat list of all color values as named key-value pairs
+    const returnColorPairs = { ...baseObj }; // Objext to be populated with flat list of all color values as named key-value pairs
     returnColors.push(baseObj);
 
     this._colors.map((color) => {
@@ -253,7 +255,7 @@ class Theme {
         ratioValues = ratioValues.map((ratio) => multiplyRatios(+ratio, this._contrast));
 
         const contrastColors = searchColors(color, bgRgbArray, baseV, ratioValues, this._formula).map((clr) => convertColorValue(clr, this._output));
-        
+
         for (let i = 0; i < contrastColors.length; i++) {
           let n;
           if (!swatchNames) {

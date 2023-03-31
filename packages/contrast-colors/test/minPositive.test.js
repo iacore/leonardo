@@ -10,7 +10,7 @@ governing permissions and limitations under the License.
 */
 /* global test, expect */
 
-import { minPositive } from "../index";
+import { minPositive } from '../index';
 
 test('should return 1', () => {
   const result = minPositive([1, 1.2, 1.4, 2, 3, 4.5, 6, 8, 12, 21]);

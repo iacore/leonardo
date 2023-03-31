@@ -9,7 +9,7 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 /* global test, expect */
-import { Color } from "../index";
+import { Color } from '../index';
 
 test('should set color name of Color class', () => {
   const color = new Color({
@@ -17,10 +17,10 @@ test('should set color name of Color class', () => {
     colorKeys: ['#2451FF', '#C9FEFE', '#012676'],
     colorspace: 'CAM02',
     ratios: [3, 4.5],
-    smooth: true
+    smooth: true,
   });
 
-  color.name = 'newColorName'
+  color.name = 'newColorName';
   const colorName = color.name;
 
   expect(colorName).toEqual('newColorName');
@@ -32,11 +32,11 @@ test('should set color keys of Color class', () => {
     colorKeys: ['#2451FF', '#C9FEFE', '#012676'],
     colorspace: 'CAM02',
     ratios: [3, 4.5],
-    smooth: true
+    smooth: true,
   });
 
-  color.colorKeys = ['#ff00ff', '#ff32ff', '#320077']
-  const colorKeys = color.colorKeys;
+  color.colorKeys = ['#ff00ff', '#ff32ff', '#320077'];
+  const { colorKeys } = color;
 
   expect(colorKeys).toEqual(['#ff00ff', '#ff32ff', '#320077']);
 });
@@ -47,11 +47,11 @@ test('should set colorspace of Color class', () => {
     colorKeys: ['#2451FF', '#C9FEFE', '#012676'],
     colorspace: 'CAM02',
     ratios: [3, 4.5],
-    smooth: true
+    smooth: true,
   });
 
-  color.colorspace = 'HSL'
-  const colorspace = color.colorspace;
+  color.colorspace = 'HSL';
+  const { colorspace } = color;
 
   expect(colorspace).toEqual('HSL');
 });
@@ -62,11 +62,11 @@ test('should set ratios of Color class', () => {
     colorKeys: ['#2451FF', '#C9FEFE', '#012676'],
     colorspace: 'CAM02',
     ratios: [3, 4.5],
-    smooth: true
+    smooth: true,
   });
 
-  color.ratios = [5, 7, 12]
-  const ratios = color.ratios;
+  color.ratios = [5, 7, 12];
+  const { ratios } = color;
 
   expect(ratios).toEqual([5, 7, 12]);
 });
@@ -77,11 +77,11 @@ test('should set smooth of Color class', () => {
     colorKeys: ['#2451FF', '#C9FEFE', '#012676'],
     colorspace: 'CAM02',
     ratios: [3, 4.5],
-    smooth: true
+    smooth: true,
   });
 
   color.smooth = false;
-  const smooth = color.smooth;
+  const { smooth } = color;
 
   expect(smooth).toEqual(false);
 });

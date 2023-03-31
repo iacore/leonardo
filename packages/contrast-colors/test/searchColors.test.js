@@ -10,15 +10,15 @@ governing permissions and limitations under the License.
 */
 /* global test, expect */
 
-import { Color } from "../index";
-import { searchColors, convertColorValue } from "../utils";
+import { Color } from '../index';
+import { searchColors, convertColorValue } from '../utils';
 
 test('should return blue color of 3.12:1 against white', () => {
-  const color = new Color({ 
-    name: 'blue', 
-    colorKeys: ['#0000ff'], 
-    colorspace: 'LAB', 
-    ratios: [3.12] 
+  const color = new Color({
+    name: 'blue',
+    colorKeys: ['#0000ff'],
+    colorspace: 'LAB',
+    ratios: [3.12],
   });
   const bgRgbArray = [255, 255, 255];
   const baseV = 100;
@@ -29,11 +29,11 @@ test('should return blue color of 3.12:1 against white', () => {
 });
 
 test('should return blue color of 3.12:1 against black', () => {
-  const color = new Color({ 
-    name: 'blue', 
-    colorKeys: ['#0000ff'], 
-    colorspace: 'LAB', 
-    ratios: [3.12] 
+  const color = new Color({
+    name: 'blue',
+    colorKeys: ['#0000ff'],
+    colorspace: 'LAB',
+    ratios: [3.12],
   });
   const bgRgbArray = [0, 0, 0];
   const baseV = 0;
@@ -44,11 +44,11 @@ test('should return blue color of 3.12:1 against black', () => {
 });
 
 test('should return blue colors of 3:1 and 4.5:1 against white', () => {
-  const color = new Color({ 
-    name: 'blue', 
-    colorKeys: ['#0000ff'], 
-    colorspace: 'LAB', 
-    ratios: [3, 4.5] 
+  const color = new Color({
+    name: 'blue',
+    colorKeys: ['#0000ff'],
+    colorspace: 'LAB',
+    ratios: [3, 4.5],
   });
   const bgRgbArray = [255, 255, 255];
   const baseV = 100;
@@ -59,11 +59,11 @@ test('should return blue colors of 3:1 and 4.5:1 against white', () => {
 });
 
 test('should return blue colors of 3:1 and 4.5:1 against black', () => {
-  const color = new Color({ 
-    name: 'blue', 
-    colorKeys: ['#0000ff'], 
-    colorspace: 'LAB', 
-    ratios: [3, 4.5] 
+  const color = new Color({
+    name: 'blue',
+    colorKeys: ['#0000ff'],
+    colorspace: 'LAB',
+    ratios: [3, 4.5],
   });
   const bgRgbArray = [0, 0, 0];
   const baseV = 0;
@@ -74,11 +74,11 @@ test('should return blue colors of 3:1 and 4.5:1 against black', () => {
 });
 
 test('should return blue color of -1.3 against light gray', () => {
-  const color = new Color({ 
-    name: 'blue', 
-    colorKeys: ['#0000ff'], 
-    colorspace: 'LAB', 
-    ratios: [-1.3] 
+  const color = new Color({
+    name: 'blue',
+    colorKeys: ['#0000ff'],
+    colorspace: 'LAB',
+    ratios: [-1.3],
   });
   const bgRgbArray = [166, 166, 166];
   const baseV = 65;
@@ -89,11 +89,11 @@ test('should return blue color of -1.3 against light gray', () => {
 });
 
 test('should return blue color of -2 against dark gray', () => {
-  const color = new Color({ 
-    name: 'blue', 
-    colorKeys: ['#0000ff'], 
-    colorspace: 'LAB', 
-    ratios: [-2] 
+  const color = new Color({
+    name: 'blue',
+    colorKeys: ['#0000ff'],
+    colorspace: 'LAB',
+    ratios: [-2],
   });
   const bgRgbArray = [99, 99, 99];
   const baseV = 40;
