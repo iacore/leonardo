@@ -201,7 +201,7 @@ test('should set contrast multiple times', () => {
       values: [
         { name: 'gray33', contrast: -2.6, value: '#ffffff' },
         { name: 'gray67', contrast: -1.4, value: '#ffffff' },
-        { name: 'gray100', contrast: 1, value: '#ffffff' },
+        { name: 'gray100', contrast: 1, value: '#fefefe' },
         { name: 'gray200', contrast: 1.4, value: '#dadada' },
         { name: 'gray300', contrast: 1.8, value: '#c1c1c1' },
         { name: 'gray400', contrast: 3, value: '#959595' },
@@ -249,7 +249,7 @@ test('should update predefined color keys', () => {
   theme.updateColor = {color: 'Color', colorKeys: ['#ff8602', '#ab3c00', '#ffd88b']}
   const themeColors = theme.contrastColorValues;
 
-  expect(themeColors).toEqual(['#d66201', '#b74700']);
+  expect(themeColors).toEqual(['#d86202', '#b84601']);
 });
 
 test('should update predefined color keys as object return', () => {

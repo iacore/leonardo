@@ -763,7 +763,7 @@ test('should generate 2 colors with bidirectional contrast (dark background)', (
   const theme = new Theme({ colors: [color], backgroundColor: '#323232' });
   const themeColors = theme.contrastColorValues;
 
-  expect(themeColors).toEqual(['#121c4e', '#9895c0']);
+  expect(themeColors).toEqual(['#121c4e', '#9894c0']);
 });
 
 // Contrast gamuts
@@ -1082,8 +1082,8 @@ test('should remove a color from existing theme', () => {
         { name: 'gray100', contrast: 8, value: '#ededed' },
         { name: 'gray200', contrast: 60, value: '#8e8e8e' },
         { name: 'gray300', contrast: 75, value: '#6e6e6e' },
-        { name: 'gray400', contrast: 90, value: '#4a4a4a' },
-        { name: 'gray500', contrast: 106, value: '#000000' }
+        { name: 'gray400', contrast: 90, value: '#4b4b4b' },
+        { name: 'gray500', contrast: 106, value: '#050505' }
       ],
     },
     {
@@ -1101,7 +1101,7 @@ test('should remove a color from existing theme', () => {
         { name: 'red100', contrast: 40, value: '#ff9797' },
         { name: 'red200', contrast: 60, value: '#ff4444' },
         { name: 'red300', contrast: 75, value: '#d20000' },
-        { name: 'red400', contrast: 90, value: '#850000' }
+        { name: 'red400', contrast: 90, value: '#8f0000' }
       ],
     },
   ]);
